@@ -1,0 +1,48 @@
+About the project
+
+    StudyBuddy is an online portal for learners, students and enthusiasts of Computer Science where 
+they can learn about new technologies, solve problems or simply discuss about a topic with their peers.
+Users can host a room with a specific topic or join an existing room and discuss via messages.
+Unauthenticated users can only see the available rooms.
+Users can search for a specific room w.r.t. Topic, Name or Description.
+--------------------------------------------------------------------------------------------------------
+
+Entities & Relationship
+
+
+User = [user_id PK, name, email UNIQUE, bio, avatar]
+
+Topic = [topic_id PK, name]
+
+Room = [room_id PK, host(User) FK, topic(Topic) FK, name, description, updated, created]
+
+Message = [message_id PK, user(User) FK, room(Room) FK, body, updated, created]
+
+Room_User = [room_user_id PK, user_id(User) FK, room_id(Room) FK]
+
+1 Topic (can belong)-> M Room
+1 User (can host)-> M Room
+1 User (can create)-> M Message
+1 Room (can have)-> M Message
+M User (can participate)-> M Room
+--------------------------------------------------------------------------------------------------------
+
+Use Cases
+
+Register
+Login
+Auth Approval
+Search Room
+Search Topic
+Join Room
+Create Room
+Search User
+Send Message
+Logout
+--------------------------------------------------------------------------------------------------------
+
+Advantages
+
+- Appealing design.
+- User can access this forum to enhance their skills and knowledge for free of cost.
+- User can have separate discussions for separate topics.
