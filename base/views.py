@@ -77,7 +77,7 @@ def home(request):
     room_count = rooms.count()
     room_messages = Message.objects.filter(Q(room__topic__name__icontains=q))
 
-    template_name = 'base/home.html'
+    template_name = 'base/landing_page.html'
     context = {
         'rooms': rooms,
         'topics': topics,
