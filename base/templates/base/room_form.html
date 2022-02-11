@@ -23,6 +23,11 @@
           {% csrf_token %}
 
           <div class="form__group">
+            <label for="room_name">Room Name</label>
+            {{form.name}}
+          </div>
+
+          <div class="form__group">
             <label for="room_topic">Topic Name</label>
             <input required type="text" value="{{room.topic.name}}" name="topic" list="topic-list" />
             <datalist id="topic-list">
@@ -33,11 +38,6 @@
               </select>
 
             </datalist>
-          </div>
-
-          <div class="form__group">
-            <label for="room_name">Room Name</label>
-            {{form.name}}
           </div>
 
           <div class="form__group">
