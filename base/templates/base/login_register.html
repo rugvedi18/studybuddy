@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <title>StudyBuddy - Find study partners around the world!</title>
-  </head>
+{% extends 'main_auth.html' %}
 
-  <body class="body">
-   
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
+{% block content %}
 <main class="auth layout">
   {% if page == 'login' %}
   <div class="container">
@@ -44,6 +24,8 @@
             <input id="password" name="password" type="password"
               placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
           </div>
+
+          {% include 'messages.html' %}
 
           <button class="btn btn--main" type="submit">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -112,7 +94,4 @@
   </div>
   {% endif %}
 </main>
-
-<script src="{% static 'js/script.js' %}"></script>
-</body>
-</html>
+{% endblock content %}

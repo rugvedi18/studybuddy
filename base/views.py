@@ -10,8 +10,18 @@ from .models import Room, Topic, Message, User
 from .forms import RoomForm, UserForm, MyUserCreationForm
 
 
+def landingPage(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+
+    template_name = 'base/landing_page.html'
+
+    return render(request, template_name)
+
+
 def loginPage(request):
     page = 'login'
+    template_name = 'base/login_register.html'
 
     if request.user.is_authenticated:
         return redirect('index')
@@ -24,6 +34,7 @@ def loginPage(request):
             user = User.objects.get(email=email)
         except:
             messages.error(request, 'User does not exist')
+            return redirect('login')
 
         user = authenticate(request, email=email, password=password)
 
@@ -32,8 +43,8 @@ def loginPage(request):
             return redirect('index')
         else:
             messages.error(request, 'Username or password does not exist')
+            return redirect('login')
 
-    template_name = 'base/login_register.html'
     context = {'page': page}
 
     return render(request, template_name, context)
@@ -41,10 +52,13 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('index')
+    return redirect('landing')
 
 
 def registerUser(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+
     form = MyUserCreationForm()
 
     if request.method == 'POST':
@@ -64,6 +78,7 @@ def registerUser(request):
     return render(request, template_name, context)
 
 
+@login_required(login_url='login')
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
 
@@ -77,7 +92,7 @@ def home(request):
     room_count = rooms.count()
     room_messages = Message.objects.filter(Q(room__topic__name__icontains=q))
 
-    template_name = 'base/landing_page.html'
+    template_name = 'base/home.html'
     context = {
         'rooms': rooms,
         'topics': topics,
@@ -88,6 +103,7 @@ def home(request):
     return render(request, template_name, context)
 
 
+@login_required(login_url='login')
 def room(request, pk):
     room = Room.objects.get(id=pk)
     # get all the msgs specific to the above room
@@ -111,6 +127,7 @@ def room(request, pk):
     return render(request, template_name, context)
 
 
+@login_required(login_url='login')
 def userProfile(request, pk):
     user = User.objects.get(id=pk)
     rooms = user.room_set.all()  # get all the children of a object
