@@ -1,8 +1,27 @@
-{% extends 'main.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>StudyBuddy - Find study partners around the world!</title>
+  </head>
 
-{% block content %}
+  <body class="body">
+   
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
 <main class="auth layout">
-
   {% if page == 'login' %}
   <div class="container">
     <div class="layout__box">
@@ -86,11 +105,14 @@
 
         <div class="auth__action">
           <p>Already signed up ?</p>
-          <a href="{% url 'login' %}" class="btn btn--link">Sign Up</a>
+          <a href="{% url 'login' %}" class="btn btn--link">Login</a>
         </div>
       </div>
     </div>
   </div>
   {% endif %}
 </main>
-{% endblock content %}
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

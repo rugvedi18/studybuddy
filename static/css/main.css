@@ -1,3 +1,57 @@
-/* body {
-  background-color: aquamarine;
-} */
+.body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../img/landing_page_bg.jpg");
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.landing_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 6em;
+}
+
+.landing_logo {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.landing_logo > img {
+  height: 4em;
+  width: 4em;
+}
+
+.landing_logo > h1 {
+  font-weight: 700;
+  font-size: 3em;
+  color: #e5e5e5;
+}
+
+.landing_desc {
+  margin-top: 4rem;
+}
+
+.landing_desc > p {
+  text-align: center;
+  font-size: large;
+  color: white;
+}
+
+.landing_options {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  margin-top: 20rem;
+  width: 50%;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  margin-left: 1rem;
+}
