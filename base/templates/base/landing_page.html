@@ -20,12 +20,14 @@
         {% endfor %}
     </ul>
     {% endif %}
+
     <div class="landing_container">
       <div class="landing_title">
         <span class="landing_logo">
           <img src="{% static 'img/logo.svg' %}"/>
           <h1 class="">StudyBuddy</h1>
         </span>
+        
         <div class="landing_desc">
           <p><strong>IMAGINE A PLACE</strong>... where you can study algorithms, learn new languages, solve problems together with a worldwide community.</p>
         </div>
@@ -33,7 +35,7 @@
 
       <div class="landing_options">
         <span class="signup">
-          <button class="btn btn--main" type="submit">
+          <button class="btn btn--main" type="submit" onclick="window.location.href='register/'">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
               <title>lock</title>
               <path
@@ -48,7 +50,7 @@
         </span>
 
         <span class="login">
-            <button class="btn btn--main" type="submit">
+            <button class="btn btn--main" type="submit" onclick="window.location.href='login/'">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
               <title>lock</title>
               <path
@@ -64,7 +66,7 @@
         </span>
       </div>
     </div>
+
     <script src="{% static 'js/script.js' %}"></script>
   </body>
 </html>
-

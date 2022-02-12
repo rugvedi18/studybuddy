@@ -1,9 +1,16 @@
+.body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../img/landing_page_bg.jpg");
+  background-attachment: fixed;
+  background-position: center;
+}
+
 .landing_title {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 4em;
+  padding-top: 6em;
 }
 
 .landing_logo {
@@ -30,16 +37,19 @@
 .landing_desc > p {
   text-align: center;
   font-size: large;
+  color: white;
 }
 
 .landing_options {
   display: flex;
-  margin-top: 20rem;
-  padding-left: 50rem;
-}
+  justify-content: space-evenly;
+  align-items: center;
 
-.login {
-  margin-left: 10rem;
+  margin-top: 20rem;
+  width: 50%;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .btn {
