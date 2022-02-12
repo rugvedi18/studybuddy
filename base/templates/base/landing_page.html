@@ -20,23 +20,21 @@
         {% endfor %}
     </ul>
     {% endif %}
-<div class="landing_container">
-    <div class="landing_title">
+    <div class="landing_container">
+      <div class="landing_title">
         <span class="landing_logo">
-            <img src="{% static 'img/logo.svg' %}">
-            <h1 class="">StudyBuddy</h1>
+          <img src="{% static 'img/logo.svg' %}"/>
+          <h1 class="">StudyBuddy</h1>
         </span>
         <div class="landing_desc">
-            <p><strong>IMAGINE A PLACE</strong>... where you can study algorithms, learn new languages, solve problems together with a worldwide community.</p>
-            <!-- <p>A place that makes it easy to discuss and achieve your goal.</p> -->
+          <p><strong>IMAGINE A PLACE</strong>... where you can study algorithms, learn new languages, solve problems together with a worldwide community.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="landing_options">
-
-        <span>
-        <h4>Not signed in yet?</h4>
-        <button class="btn btn--main" type="submit">
+      <div class="landing_options">
+        <span class="signup">
+          <h4>Not signed in yet?</h4>
+          <button class="btn btn--main" type="submit">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
               <title>lock</title>
               <path
@@ -50,7 +48,7 @@
           </button>
         </span>
 
-        <span>
+        <span class="login">
             <h4>Alredy signed in?</h4>
             <button class="btn btn--main" type="submit">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -63,10 +61,10 @@
               </path>
             </svg>
             Login
-          </button>
-    </span>
-        </div>
-</div>
+            </button>
+        </span>
+      </div>
+    </div>
     <script src="{% static 'js/script.js' %}"></script>
   </body>
 </html>
