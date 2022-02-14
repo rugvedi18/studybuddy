@@ -84,8 +84,8 @@ def home(request):
 
     rooms = Room.objects.filter(
         Q(topic__name__icontains=q) |
-        Q(name__icontains=q) |
-        Q(description__icontains=q)
+        Q(name__icontains=q)
+        # Q(description__icontains=q)
     )
 
     topics = Topic.objects.all()[0:5]
@@ -148,6 +148,13 @@ def createRoom(request):
 
     if request.method == 'POST':
         topic_name = request.POST.get('topic')
+
+        # sort this out later
+        # room_name = request.POST.get('name')
+        # check_room = Room.objects.get(name=room_name)
+        # if room_name == check_room.name:
+        #     print('room name already exists with this user')
+
         topic, created = Topic.objects.get_or_create(name=topic_name)
 
         Room.objects.create(
@@ -237,6 +244,7 @@ def updateUser(request):
     return render(request, template_name, context)
 
 
+@login_required(login_url='login')
 def topicsPage(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     topics = Topic.objects.filter(name__icontains=q)
@@ -247,6 +255,7 @@ def topicsPage(request):
     return render(request, template_name, context)
 
 
+@login_required(login_url='login')
 def activityPage(request):
     room_messages = Message.objects.all()
 
