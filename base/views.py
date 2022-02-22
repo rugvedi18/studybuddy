@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from .models import Room, Topic, Message, User
-from .forms import RoomForm, UserForm, MyUserCreationForm
+from .forms import MessageForm, RoomForm, UserForm, MyUserCreationForm
 
 
 def landingPage(request):
@@ -90,12 +90,11 @@ def home(request):
 
     topics = Topic.objects.all()[0:5]
     room_count = rooms.count()
-    room_messages = Message.objects.filter(
-        Q(room__topic__name__icontains=q))[:5]
+    room_messages = Message.objects.filter(Q(room__topic__name__icontains=q))
 
     template_name = 'base/home.html'
     context = {
-        'rooms': rooms[:5],
+        'rooms': rooms,
         'topics': topics,
         'room_count': room_count,
         'room_messages': room_messages,
@@ -111,13 +110,22 @@ def room(request, pk):
     # the message is the Model name and _set.all() is set of msgs
     room_messages = room.message_set.all()
     participants = room.participants.all()
+    form = MessageForm()
 
     if request.method == 'POST':
-        message = Message.objects.create(
-            user=request.user,
-            room=room,
-            body=request.POST.get('body')
-        )
+        form = MessageForm(request.POST, request.FILES)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.user = request.user
+            message.room = room
+            message.body = request.POST.get('body')
+            message.save()
+
+        # Message.objects.create(
+        #     user=request.user,
+        #     room=room,
+        #     body=request.POST.get('body')
+        # )
         room.participants.add(request.user)
         return redirect('room', pk=room.id)
 

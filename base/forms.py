@@ -1,3 +1,5 @@
+from dataclasses import field
+from email.message import Message
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from .models import Room, User
@@ -20,3 +22,9 @@ class UserForm(ModelForm):
     class Meta:
         model = User
         fields = ['avatar', 'name', 'bio']
+
+
+class MessageForm(ModelForm):
+    class Meta:
+        mdoel = Message
+        fields = ['body', 'image']
