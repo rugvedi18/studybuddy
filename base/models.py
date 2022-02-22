@@ -46,7 +46,7 @@ class Message(models.Model):
     body = models.TextField()
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(null=True, upload_to='msgImages')
+    image = models.ImageField(null=True, upload_to='msgImages', blank=True)
 
     class Meta:
         ordering = ['-updated', '-created']

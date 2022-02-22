@@ -105,7 +105,8 @@
               </div>
               <div class="thread__details">
                 {% if message.image %}
-                <img src="{{message.image.url}}" width="600" height="300" />
+                <img class="msg-image" src="{{message.image.url}}" width="100" height="150" />
+                <a href="{{message.image.url}}">attachment</a>
                 {% endif %}
                 {{message.body}}
               </div>
@@ -115,15 +116,11 @@
         </div>
       </div>
       <div class="room__message">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form class="form" action="" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <!-- <input name="body" placeholder="Write your message here..." /> -->
-          {% for field in form %}
-          <div class="form__group form__group">
-            <label for="room_name">{{ field.label }}</label>
-            {{ field }}
-          </div>
-          {% endfor %}
+          <input name="body" required id="id_body" placeholder="Write your message here..." />
+          <input type="file" name="image" accept="image/*" id="id_image" placeholder="Image">
         </form>
       </div>
     </div>

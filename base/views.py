@@ -115,12 +115,15 @@ def room(request, pk):
     if request.method == 'POST':
         form = MessageForm(request.POST, request.FILES)
         if form.is_valid():
+            print('Form is valid')
             message = form.save(commit=False)
             message.user = request.user
             message.room = room
             message.body = request.POST.get('body')
+            message.image = request.FILES.get('image')
             message.save()
-
+        else:
+            print('Form is invalid')
         # Message.objects.create(
         #     user=request.user,
         #     room=room,
@@ -131,7 +134,7 @@ def room(request, pk):
 
     template_name = 'base/room.html'
     context = {'room': room, 'room_messages': room_messages,
-               'participants': participants}
+               'participants': participants, 'form': form}
 
     return render(request, template_name, context)
 
